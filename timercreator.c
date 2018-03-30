@@ -90,9 +90,9 @@ void testTimerSign(){
     begin = rdtsc();
     
     ts.it_interval.tv_sec = 0;
-    ts.it_interval.tv_nsec = 100;  
+    ts.it_interval.tv_nsec = 1;  
     ts.it_value.tv_sec = 0;
-    ts.it_value.tv_nsec = 10;  
+    ts.it_value.tv_nsec = 2;  
     //printTime();
     //printf("start\n");
     ret = timer_settime(timer, 0, &ts, NULL);  
