@@ -98,7 +98,7 @@ void testTimerSign(){
     if(ret) {
         perror("timer_settime"); 
     } 
-    printf("settime delay: %d\n", end-begin);
+    //printf("settime delay: %d\n", end-begin);
 }
 
 void printTime(){
