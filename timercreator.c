@@ -29,6 +29,7 @@ uint64_t rdtsc()
 const int NUMBER = 1;
 uint64_t signaltime[10]; 
 uint64_t begintime[10];
+uint64_t starttime;
 int count = 0;
 int fd;
 char buf[W_LEN] = {0};
@@ -42,6 +43,7 @@ int main() {
 
     testTimerSign();
     while(count < NUMBER){
+        starttime = rdtsc();
          begintime[count] = rdtsc();
          //int left = sleep(5);
          write(fd, buf, W_LEN);
@@ -54,15 +56,16 @@ int main() {
     int i;
     for(i = 0; i < count; i++)
     {
-      printf("timestamp %d: %lu -- %lu (delay: %lu)\n", i, begintime[i], signaltime[i], signaltime[i]-begintime[i]);
+      //printf("timestamp %d: %lu -- %lu (delay: %lu)\n", i, begintime[i], signaltime[i], signaltime[i]-begintime[i]);
     }
-    printf("%lu\n", rdtsc());
     return 0; 
 }
 
 void SignHandler(int iSignNo){
     //printTime();
-    printf("TSC when entering sig handler: %lu \n", rdtsc());
+    uint64_t signaltime = rdtsc();
+    printf("TSC when entering sig handler: %lu \n", signaltime);
+    printf("Delay %lu \n", signaltime-starttime);
     if(iSignNo == SIGUSR1){
         printf("Capture sign no : SIGUSR1\n"); 
     }else if(SIGALRM == iSignNo){
@@ -90,9 +93,9 @@ void testTimerSign(){
     begin = rdtsc();
     
     ts.it_interval.tv_sec = 0;
-    ts.it_interval.tv_nsec = 50;  
+    ts.it_interval.tv_nsec = 2;  
     ts.it_value.tv_sec = 0;
-    ts.it_value.tv_nsec = 300;  
+    ts.it_value.tv_nsec = 10;  
     //printTime();
     //printf("start\n");
     ret = timer_settime(timer, 0, &ts, NULL);  
