@@ -4,13 +4,15 @@
 #include <signal.h>
 #include <time.h>
 
+#define W_LEN ( 1 << 10)
+
 void SignHandler(int iSignNo);
 void testTimerSign();
 void printTime();
 
 int rdtsc()
 {
-  int ret = 0;
+  uint64_t ret = 0;
   __asm__ __volatile__(
 //    "mfence\n\t"
     "rdtscp"
@@ -22,16 +24,24 @@ int rdtsc()
   return ret;
 }
 
-const int NUMBER = 10;
+const int NUMBER = 1;
 int signaltime[10]; int begintime[10];
 int count = 0;
+int fd;
+char buf[W_LEN] = {0};
 
 int main() {
     printf("%d\n", rdtsc());
+    fd = open("output", O_WRONLY);
+    if (fd == -1){
+        return EXIT_FAILURE;
+    } 
+
     testTimerSign();
     while(count < NUMBER){
          begintime[count] = rdtsc();
-         int left = sleep(5);
+         //int left = sleep(5);
+         write(fd, buf, W_LEN);
          //printTime();
          signaltime[count++] = rdtsc();
  //        printf("======  in loop: %d\n", signaltime[count-1]);
@@ -41,7 +51,7 @@ int main() {
     int i;
     for(i = 0; i < count; i++)
     {
-      printf("timestamp %d: %d -- %d (delay: %d)\n", i, begintime[i], signaltime[i], signaltime[i]-begintime[i]);
+      printf("timestamp %d: %lu -- %lu (delay: %lu)\n", i, begintime[i], signaltime[i], signaltime[i]-begintime[i]);
     }
     printf("%d\n", rdtsc());
     return 0; 
@@ -49,6 +59,7 @@ int main() {
 
 void SignHandler(int iSignNo){
     //printTime();
+    printf("TSC when entering sig handler: %lu \n", rdtsc());
     if(iSignNo == SIGUSR1){
         printf("Capture sign no : SIGUSR1\n"); 
     }else if(SIGALRM == iSignNo){
