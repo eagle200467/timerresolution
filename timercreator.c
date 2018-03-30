@@ -35,7 +35,7 @@ char buf[W_LEN] = {0};
 
 int main() {
     printf("%lu\n", rdtsc());
-    fd = open("output", O_WRONLY);
+    fd = open("output", O_WRONLY  | O_CREAT);
     if (fd == -1){
         return EXIT_FAILURE;
     } 
