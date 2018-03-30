@@ -26,7 +26,7 @@ uint64_t rdtsc()
   return ret;
 }
 
-const int NUMBER = 1;
+const int NUMBER = 2;
 uint64_t signaltime[10]; 
 uint64_t begintime[10];
 int count = 0;
