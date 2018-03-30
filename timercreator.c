@@ -27,7 +27,8 @@ int rdtsc()
 }
 
 const int NUMBER = 1;
-int signaltime[10]; int begintime[10];
+uint64_t signaltime[10]; 
+unit64_t begintime[10];
 int count = 0;
 int fd;
 char buf[W_LEN] = {0};
