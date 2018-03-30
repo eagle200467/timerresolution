@@ -26,7 +26,7 @@ uint64_t rdtsc()
   return ret;
 }
 
-const int NUMBER = 2;
+const int NUMBER = 1;
 uint64_t signaltime[10]; 
 uint64_t begintime[10];
 int count = 0;
@@ -92,7 +92,7 @@ void testTimerSign(){
     ts.it_interval.tv_sec = 0;
     ts.it_interval.tv_nsec = 1;  
     ts.it_value.tv_sec = 0;
-    ts.it_value.tv_nsec = 5;  
+    ts.it_value.tv_nsec = 2;  
     //printTime();
     //printf("start\n");
     ret = timer_settime(timer, 0, &ts, NULL);  
