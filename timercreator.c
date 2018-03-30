@@ -12,7 +12,7 @@ void SignHandler(int iSignNo);
 void testTimerSign();
 void printTime();
 
-int rdtsc()
+uint64_t rdtsc()
 {
   uint64_t ret = 0;
   __asm__ __volatile__(
