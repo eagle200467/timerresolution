@@ -34,7 +34,7 @@ int fd;
 char buf[W_LEN] = {0};
 
 int main() {
-    printf("%d\n", rdtsc());
+    printf("%lu\n", rdtsc());
     fd = open("output", O_WRONLY);
     if (fd == -1){
         return EXIT_FAILURE;
@@ -56,7 +56,7 @@ int main() {
     {
       printf("timestamp %d: %lu -- %lu (delay: %lu)\n", i, begintime[i], signaltime[i], signaltime[i]-begintime[i]);
     }
-    printf("%d\n", rdtsc());
+    printf("%lu\n", rdtsc());
     return 0; 
 }
 
