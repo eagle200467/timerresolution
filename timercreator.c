@@ -92,7 +92,7 @@ void testTimerSign(){
     int begin, end;
     begin = rdtsc();
     
-    ts.it_interval.tv_sec = 1;
+    ts.it_interval.tv_sec = 0.5;
     ts.it_interval.tv_nsec = 0;  
     ts.it_value.tv_sec = 0;
     ts.it_value.tv_nsec = 0;  
