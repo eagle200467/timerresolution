@@ -49,9 +49,6 @@ int main() {
         write(fd, buf, W_LEN);
          //printTime();
         signaltime[count++] = rdtsc();
-    //        printf("======  in loop: %d\n", signaltime[count-1]);
-    //         printf("sleep(5)(left=%d)\n", left);
-        count++;
     }
     
     return 0; 
@@ -89,7 +86,7 @@ void testTimerSign(){
     begin = rdtsc();
     
     ts.it_interval.tv_sec = 0;
-    ts.it_interval.tv_nsec = 100;  
+    ts.it_interval.tv_nsec = 100000;  
     ts.it_value.tv_sec = 0;
     ts.it_value.tv_nsec = 1;  
     //printTime();
