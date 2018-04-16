@@ -42,7 +42,7 @@ int main() {
         return EXIT_FAILURE;
     } 
 
-    timer_t timer=testTimerSign();
+    testTimerSign();
     while(count < NUMBER){
         starttime = rdtsc();
         begintime[count] = rdtsc();
