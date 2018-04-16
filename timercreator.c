@@ -88,7 +88,7 @@ void testTimerSign(){
     ts.it_interval.tv_sec = 0;
     ts.it_interval.tv_nsec = 500;  
     ts.it_value.tv_sec = 0;
-    ts.it_value.tv_nsec = 100;
+    ts.it_value.tv_nsec = 1;
       
     //printTime();
     //printf("start\n");
