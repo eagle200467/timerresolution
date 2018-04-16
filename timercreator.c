@@ -6,7 +6,7 @@
 #include <stdint.h>
 #include <fcntl.h>
 
-#define W_LEN ( 1 << 1)
+#define W_LEN ( 1 << 5)
 
 void SignHandler(int iSignNo);
 void testTimerSign();
@@ -49,15 +49,11 @@ int main() {
         write(fd, buf, W_LEN);
          //printTime();
         signaltime[count++] = rdtsc();
- //        printf("======  in loop: %d\n", signaltime[count-1]);
-//         printf("sleep(5)(left=%d)\n", left);
+    //        printf("======  in loop: %d\n", signaltime[count-1]);
+    //         printf("sleep(5)(left=%d)\n", left);
+        count++;
     }
     
-    int i;
-    for(i = 0; i < count; i++)
-    {
-      //printf("timestamp %d: %lu -- %lu (delay: %lu)\n", i, begintime[i], signaltime[i], signaltime[i]-begintime[i]);
-    }
     return 0; 
 }
 
