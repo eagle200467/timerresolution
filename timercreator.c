@@ -26,6 +26,7 @@ uint64_t rdtsc()
   return ret;
 }
 
+timer_t timer;
 const int NUMBER = 1;
 uint64_t signaltime[10]; 
 uint64_t begintime[10];
@@ -41,7 +42,7 @@ int main() {
         return EXIT_FAILURE;
     } 
 
-    testTimerSign();
+    timer_t timer=testTimerSign();
     while(count < NUMBER){
         starttime = rdtsc();
         begintime[count] = rdtsc();
@@ -66,12 +67,12 @@ void SignHandler(int iSignNo){
     }else{
         printf("Capture sign no:%d\n",iSignNo); 
     }
+    timer_delete(timer);
 }
 
 void testTimerSign(){
     struct sigevent evp;  
-    struct itimerspec ts;  
-    timer_t timer;  
+    struct itimerspec ts;   
     int ret;  
     evp.sigev_value.sival_ptr = &timer;  
     evp.sigev_notify = SIGEV_SIGNAL;  
@@ -86,7 +87,7 @@ void testTimerSign(){
     begin = rdtsc();
     
     ts.it_interval.tv_sec = 0;
-    ts.it_interval.tv_nsec = 2000;  
+    ts.it_interval.tv_nsec = 20000;  
     ts.it_value.tv_sec = 0;
     ts.it_value.tv_nsec = 1;
       
