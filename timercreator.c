@@ -86,9 +86,9 @@ void testTimerSign(){
     begin = rdtsc();
     
     ts.it_interval.tv_sec = 0;
-    ts.it_interval.tv_nsec = 100;  
+    ts.it_interval.tv_nsec = 400;  
     ts.it_value.tv_sec = 0;
-    ts.it_value.tv_nsec = 2000;
+    ts.it_value.tv_nsec = 100;
       
     //printTime();
     //printf("start\n");
