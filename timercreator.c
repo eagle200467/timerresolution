@@ -6,7 +6,7 @@
 #include <stdint.h>
 #include <fcntl.h>
 
-#define W_LEN ( 1 << 5)
+#define W_LEN ( 1 << 3)
 
 void SignHandler(int iSignNo);
 void testTimerSign();
