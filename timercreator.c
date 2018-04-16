@@ -6,7 +6,7 @@
 #include <stdint.h>
 #include <fcntl.h>
 
-#define W_LEN ( 1 << 2)
+#define W_LEN ( 1 << 5)
 
 void SignHandler(int iSignNo);
 void testTimerSign();
@@ -93,9 +93,9 @@ void testTimerSign(){
     begin = rdtsc();
     
     ts.it_interval.tv_sec = 0;
-    ts.it_interval.tv_nsec = 1000;  
+    ts.it_interval.tv_nsec = 10;  
     ts.it_value.tv_sec = 0;
-    ts.it_value.tv_nsec = 10000;  
+    ts.it_value.tv_nsec = 100;  
     //printTime();
     //printf("start\n");
     ret = timer_settime(timer, 0, &ts, NULL);  
